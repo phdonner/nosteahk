@@ -1,0 +1,36 @@
+11:30 19.10.2024
+08.59 20.06.2025
+
+Convert-AutoHotKeyFile.ps1 on PowerShell skripti joka päivittää kuukausimaksulaskun maksuerään liittyvät tiedot: periodin alku- ja loppupäivämäärät sekä maksuerää koskevan merkinnän.
+
+Työpöydällä säilytettävät makrot jotka latautuvat kaksoisklikkauksella:
+
+nostelasku.ahk - sisältää laskutustyön aikana suoritettavat skriptit 
+	F8 - E-laskutiedot
+	F9 - E-lasku ja parilaskutiedot
+
+null.ahk - poistaa skriptit ympäristöstä
+	   Huom. Selvitä ajaako kuvakkeen poistaminen tehtäväpalkilta saman asian ???
+
+Taustaa
+
+Osuuskunta työstää toistaiseksi lähteviä laskuja menetelmällä, joka yhdistää manuaalisia ja automaattisia aineksia.
+
+Liittymätietoja säilytetään Excel-muotoisessa liittymäluettelossa. Luettelosta tallennetaan päivityksien jälkeen CSV-muotoinen tiedosto josta kuukausierän laskut voidaan helposti generoida.
+
+New-Finvoice.ps1 on toimiva skripti, joka liittymätietojen perusteella luo automaattisesti laskutettavaa kuukausimaksuerää koskevan Finvoice-laskun.
+
+Pullonkaulana on että OP:n Web Services -palvelu ja Yrityksen OP verkkopalvelun ns. Aineistonsiirto-mekanismi edellyttää että laskuerään liitetään SOAP-spesifikaation mukainen lähete (Envelope). 
+
+SOAP-lähete on tarkoin kuvattu OP:n dokumentaatiossa. Osuuskunta ei kuitenkaan ole onnistunut luomaan toimivaa lähetteen tuottavaa skriptiä.
+
+Toien asia on, että aineistonsiirtomekanismin ei tarvitsisi vaatia ko. lähetettä kun se muuten perustuu aineiston poimitaan File Open -dialogin käyttöön.
+
+Asia on siis ratkaistavissa joko siten että OP poistaa tarpeettoman SOAP-rakenteen jonka OP voisi itse rakentaa File Open -dialogissa valituille tiedostoille. 
+
+Vaihtoehtoisesti osuuskunta kehittää oman SOAP-modulin. Tällöin laskuerän voi toimittaa joko OP Web Service -palvelun Yrityksen OP verkkopalvelun avulla.
+
+
+-------------------------------
+
+AutoHotkey on kolmannen osapuolen ohjelma 
