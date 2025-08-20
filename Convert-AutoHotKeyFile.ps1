@@ -1,8 +1,8 @@
-# Convert-AutoHotKeyFile.pst - Ver. 1.0 19.10.2024
+# Convert-AutoHotKeyFile.pst - Ver. 1.1 19.08.2025
 
 # Copyright (c) 2025, Ph. Donner
 
-# Tässä versiossa oletamme että AutoHotKey skripti on sijoitettu työpöydälle
+# Tässä versiossa oletamme edelleen että AutoHotKey skripti on sijoitettu työpöydälle
 
 Function Get-BillingPeriodDlg
 <#
