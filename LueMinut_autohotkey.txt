@@ -1,0 +1,16 @@
+11:50 19.10.2024
+08:53 20.06.2025
+
+AutoHotKey on kolmannen osapuolen ohjelma, joka suorittaa yhden näppäimen tai näppäinyhdistelmän perusteella monimutkaisempia näppäinsekvenssejä.
+
+Ohjelman voi noutaa osoitteesta <https://www.autohotkey.com/>. 
+Meneillään olevaa versiota v2.0.19 on kuvattu sivustossa, joka avautuu osoitteesta <https://www.autohotkey.com/docs/v2/>.
+
+Ohjelma ei itsessään tee mitään, vaan se tarvitsee avukseen käsikirjoituksen eli skriptin joka määrittelee mitä ohjelman pitää tehdä. 
+
+Skripti ja Macro t. Makro
+
+Skripti on pelkkä tekstitiedosto. AutoHotKey vaatii että tekstitiedoston tiedostotyyppinä on .ahk. Sen perusteella tietokoneen käyttöjärjestelmä osaa käynnistää AutoHotKey palvelun, joka käynnistyttyään suorittaa eri tehtäviä sen perusteella mitä skriptissä määriteltyjä pikanäppäimiä painetaan.
+
+Funktionäppäimet F1 - F12 (parhaiten sopivat F8-F12)
+
