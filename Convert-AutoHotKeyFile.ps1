@@ -1,8 +1,8 @@
-# Convert-AutoHotKeyFile.pst - Ver. 1.1 19.08.2025
+# Convert-AutoHotKeyFile.pst - Ver. 1.2 23.08.2025
 
 # Copyright (c) 2025, Ph. Donner
 
-# Tässä versiossa oletamme edelleen että AutoHotKey skripti on sijoitettu työpöydälle
+# Tässä versiossa oletamme toistaiseksi, että AutoHotKey skripti on sijoitettu työpöydälle
 
 Function Get-BillingPeriodDlg
 <#
@@ -10,7 +10,7 @@ Function Get-BillingPeriodDlg
 Short description
 
 .DESCRIPTION
-Osuuskunta huolehtii myyntilaskutuksesta manuaalisesti OP-pankin yrityksen verkkopankin WWW-käyttöliittymän kautta.
+Osuuskunta huolehtii myyntilaskutuksesta manuaalisesti OP:n yrityksen verkkopankin WWW-käyttöliittymän kautta.
 Pankin matkapuhelinsovelluksessa voi ilmeisesti kopioida laskun tiedot, mutta se ei ole mahdollista tietokoneella.
 
 Siksi käytämme apuna AutoHotKey-makroja, jotka täyttävät laskun tiedot automaattisesti.
@@ -19,7 +19,7 @@ F9-näppäin luo myös tietueen paperilaskusta aiheutuvan lisäkulun kattamiseks
 
 HUOM: 
 OP-palvelun toiminta on epätasaista, joten makro ei aina toimi moitteettomasti.
-Jos täyttö epäonnistuu, on helpointa käynnistää makro uudelleen.
+Jos täyttö epäonnistuu, on helpointa palata edeltävään tilanteeseen ja käynnistää makro uudelleen.
 
 .PARAMETER Year
 Parameter description
@@ -239,11 +239,13 @@ Function Get-BillingPeriodDescription
     }
 
 $Desktop = [Environment]::GetFolderPath('Desktop')
-$Script = "$Desktop\nostelasku.ahk"
+
+$ScriptName = 'nosteoplasku.ahk'
+$Script = "$Desktop\$($ScriptName)"
 
 If (-Not (Test-Path $Script -PathType Leaf))
     {
-    $Message = 'Työpöydällä ei ole AutoHotKey-tiedostoa: nostelasku.ahk'
+    $Message = "Työpöydällä ei ole AutoHotKey-tiedostoa: $ScriptName"
     Write-Warning $Message
     Exit
     }
@@ -284,7 +286,7 @@ If ($Null -ne $Period)
             {
             '; AlkuPvm' {$arrayScript[$n+1] = "Send `"$AlkuPvm`""}
             '; LoppuPvm'{$arrayScript[$n+1] = "Send `"$LoppuPvm`""}
-            '; MaksuErä' {$arrayScript[$n+1] = "Send `"Kuukausimaksuerä $($Year)-$Batch`""}
+            '; MaksuErä'{$arrayScript[$n+1] = "Send `"Kuukausimaksuerä $($Year)-$Batch`""}
             }
 
         $n++
