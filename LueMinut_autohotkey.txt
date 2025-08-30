@@ -1,15 +1,40 @@
 11:50 19.10.2024
 08:53 20.06.2025
 
-AutoHotKey on kolmannen osapuolen ohjelma, joka suorittaa yhden näppäimen tai näppäinyhdistelmän perusteella monimutkaisempia näppäinsekvenssejä.
+# Autohotkey -ohjelma
 
-Ohjelman voi noutaa osoitteesta <https://www.autohotkey.com/>. Meneillään olevaa versiota v2.0.19 on kuvattu sivustossa, joka avautuu osoitteesta <https://www.autohotkey.com/docs/v2/>.
+AutoHotKey (tässä AHK) on kolmannen osapuolen ohjelma, joka suorittaa yhden näppäimen 
+tai näppäinyhdistelmän perusteella monimutkaisempia näppäinsekvenssejä.
 
-Ohjelma ei itsessään tee mitään, vaan se tarvitsee avukseen käsikirjoituksen eli skriptin joka määrittelee mitä ohjelman pitää tehdä. 
+AHK-ohjelman voi noutaa osoitteesta <https://www.autohotkey.com/>. 
 
-Skripti ja Macro t. Makro
+Meneillään olevaa versiota v2.0.19 on kuvattu sivustossa, 
+joka avautuu osoitteesta <https://www.autohotkey.com/docs/v2/>.
 
-Skripti on pelkkä tekstitiedosto. AutoHotKey vaatii että tekstitiedoston tiedostotyyppinä on .ahk. Sen perusteella tietokoneen käyttöjärjestelmä osaa käynnistää AutoHotKey palvelun, joka käynnistyttyään suorittaa eri tehtäviä sen perusteella mitä skriptissä määriteltyjä pikanäppäimiä painetaan.
+Ohjelma ei itsessään tee mitään, vaan se tarvitsee avukseen käsikirjoituksen 
+eli skriptin, joka määrittelee mitä ohjelman pitää tehdä. 
 
-Funktionäppäimet F1 - F12 (parhaiten sopivat F8-F12)
+## Autohotkey skripti ja macro (tai suomeksi makro)
 
+AutoHotKey vaatii että tekstitiedoston tiedostotyyppinä on .ahk. 
+
+Skripti on pelkkä tekstitiedosto, joka on kirjoitettu ohjelmaa varten
+rakennetun sytaksin mukaisesti. Kyseistä kielioppia kuvataan dokumentaatiossa.
+
+Tietokoneen käyttöjärjestelmä osaa käynnistää AutoHotKey-palvelun, 
+joka käynnistyttyään suorittaa skriptissä määriteltyjä tehtäviä kunnes
+meneillään oleva Windows istunto käynnistetään uudelleen.
+
+## Aktiiviset näppäimet ja näppäinyhdistelmät
+
+Skriptissä määritellään pikanäppäimiä tai näppäinyhdistelmiä. 
+Niiden alla kuvataan AHK ohjelmointikielen
+mukaisia ohjelmia. Ne ovat yleensä rutiininomaisia tehtäviä joita
+käyttäjä haluaa alistaa aktiiviselle näppäimelle. 
+
+Tehtävään soveltuu erityisen hyvin näppäimistön funktionäppäimet F2 - F12 
+(parhaiten sopivat yleensä F8-F12).
+
+Käyttäjän on syytä määritellä rinnakkainen skripti joka tyhjentää 
+automaattiseksi (eli kuumaksi) määritellyt näppäimet. 
+Tällä vältetään että skriptit käynnistyvät tahattomasti.

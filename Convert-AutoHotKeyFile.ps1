@@ -1,8 +1,13 @@
-# Convert-AutoHotKeyFile.pst - Ver. 1.1 19.08.2025
+# Convert-AutoHotKeyFile.pst - Ver. 1.2 23.08.2025
+
+# This skript contains two functions: 
+# Get-BillingPeriodDlg
+# Get-CurrentBillingPeriod
+
 
 # Copyright (c) 2025, Ph. Donner
 
-# Tässä versiossa oletamme edelleen että AutoHotKey skripti on sijoitettu työpöydälle
+# Tässä versiossa oletamme toistaiseksi, että AutoHotKey skripti on sijoitettu työpöydälle
 
 Function Get-BillingPeriodDlg
 <#
@@ -10,7 +15,7 @@ Function Get-BillingPeriodDlg
 Short description
 
 .DESCRIPTION
-Osuuskunta huolehtii myyntilaskutuksesta manuaalisesti OP-pankin yrityksen verkkopankin WWW-käyttöliittymän kautta.
+Osuuskunta huolehtii myyntilaskutuksesta manuaalisesti OP:n yrityksen verkkopankin WWW-käyttöliittymän kautta.
 Pankin matkapuhelinsovelluksessa voi ilmeisesti kopioida laskun tiedot, mutta se ei ole mahdollista tietokoneella.
 
 Siksi käytämme apuna AutoHotKey-makroja, jotka täyttävät laskun tiedot automaattisesti.
@@ -19,7 +24,7 @@ F9-näppäin luo myös tietueen paperilaskusta aiheutuvan lisäkulun kattamiseks
 
 HUOM: 
 OP-palvelun toiminta on epätasaista, joten makro ei aina toimi moitteettomasti.
-Jos täyttö epäonnistuu, on helpointa käynnistää makro uudelleen.
+Jos täyttö epäonnistuu, on helpointa palata edeltävään tilanteeseen ja käynnistää makro uudelleen.
 
 .PARAMETER Year
 Parameter description
@@ -152,6 +157,7 @@ General notes
     #### Search for OK Button Function
     $ButtonOk.Add_Click(
             {
+            # Set the output variables from the dialog
             $Year   = $ComboBoxYear.text
             $Period = $ComboBoxSet.text
             $YearSetDlg.Close()
@@ -170,6 +176,7 @@ General notes
     #### Set Cancel Button Function
     $ButtonCancel.Add_Click(
             {
+            # Reset the output variables returned from the dialog
             $Year = $null
             $Set = $null
             $YearSetDlg.Close()
@@ -200,7 +207,8 @@ Function Get-BillingPeriodDescription
     {
     <#
     .SYNOPSIS
-    Prepares a string which describes the start date and and the end date from the descriptive string of the billing period
+    Prepares a string which describes the start and and the end date 
+    from the descriptive string of the billing period
     
     .DESCRIPTION
     Long description
@@ -212,7 +220,8 @@ Function Get-BillingPeriodDescription
     Get-BillingPeriodDescription -Period '2025-02'
     
     .NOTES
-    Wish list: Create alternative parameterset which accepts period as an object (year, month)
+    Wish list: 
+    Create alternative parameterset which accepts period as an object (year, month)
     #>
 
     Param
@@ -239,11 +248,13 @@ Function Get-BillingPeriodDescription
     }
 
 $Desktop = [Environment]::GetFolderPath('Desktop')
-$Script = "$Desktop\nostelasku.ahk"
+
+$ScriptName = 'nosteoplasku.ahk'
+$Script = "$Desktop\$($ScriptName)"
 
 If (-Not (Test-Path $Script -PathType Leaf))
     {
-    $Message = 'Työpöydällä ei ole AutoHotKey-tiedostoa: nostelasku.ahk'
+    $Message = "Työpöydällä ei ole AutoHotKey-tiedostoa: $ScriptName"
     Write-Warning $Message
     Exit
     }
@@ -268,9 +279,9 @@ If ($Null -ne $Period)
 
     [array]$arrayScript = @(Get-Content -Path $Script -Encoding utf8)
 
-#    Write-Debug $arrayScript[0]
-#    Write-Debug $arrayScript[1]
-#    Write-Debug $arrayScript[2]
+    Write-Debug $arrayScript[0]
+    Write-Debug $arrayScript[1]
+    Write-Debug $arrayScript[2]
 
     $Count = $arrayScript.Count
     $n = 0
@@ -284,7 +295,7 @@ If ($Null -ne $Period)
             {
             '; AlkuPvm' {$arrayScript[$n+1] = "Send `"$AlkuPvm`""}
             '; LoppuPvm'{$arrayScript[$n+1] = "Send `"$LoppuPvm`""}
-            '; MaksuErä' {$arrayScript[$n+1] = "Send `"Kuukausimaksuerä $($Year)-$Batch`""}
+            '; MaksuErä'{$arrayScript[$n+1] = "Send `"Kuukausimaksuerä $($Year)-$Batch`""}
             }
 
         $n++
